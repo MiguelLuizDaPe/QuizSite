@@ -1,0 +1,41 @@
+.inicio{
+    height: 200px;
+    width: 400px;
+    /* background: black; */
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+.inicio_input{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    /* background-color: aqua; */
+    font-size: x-large;
+}
+
+.inicio_input input{
+    /* font-size: x-large; */
+    margin: 0.4rem 0
+}
+
+.inicio_botao{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    /* background-color: aqua; */
+    margin: 10%;
+}
+
+.inicio_botao button{
+    font-size: x-large;
+    padding: 10px;
+}
