@@ -1,49 +1,71 @@
-.quiz{
-    height: 200px;
-    width: 400px;
-    /* background: black; */
+.quiz {
+  height: 200px;
+  width: 400px;
+  /* background: black; */
 
-    position: fixed;
-    /* top: 50%; */
-    left: 50%;
-    /* margin-top: -100px; */
-    margin-left: -200px;
+  position: fixed;
+  /* top: 50%; */
+  left: 50%;
+  /* margin-top: -100px; */
+  margin-left: -200px;
 
-    display: flex;
-    align-items: center;
-    flex-flow: column;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
 }
 
-.respostas{
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.5rem;
+.button-back{
+  font-size: 1.5rem;
+  position: absolute;
 }
 
-.question-body{
-    /* font-family: monospace; */
-    font-size: 3rem;
+.container_button-navegation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30%;
+  /* background-color: aqua; */
 }
 
-.answer-grid{
-    display: grid;
-    font-size: 2rem;
-    /* background-color: aqua; */
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
+.container_button-navegation button{
+  font-size: 1.5rem;
 }
 
-.answer-button{
-    font-size: 2rem;
+.button-next {
+  /* margin-right: 30%; */
+  /*talvez mudar essa margem*/
 }
 
-.answer-button-correct{
-    background-color: lime;
-    font-size: inherit;
+.respostas {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
 }
 
-.answer-button-wrong{
-    background-color: red;
-    font-size: inherit;
+.question-body {
+  /* font-family: monospace; */
+  font-size: 3rem;
+}
+
+.answer-grid {
+  display: grid;
+  font-size: 2rem;
+  /* background-color: aqua; */
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.answer-button {
+  font-size: 2rem;
+}
+
+.answer-button-correct {
+  background-color: lime;
+  font-size: inherit;
+}
+
+.answer-button-wrong {
+  background-color: red;
+  font-size: inherit;
 }

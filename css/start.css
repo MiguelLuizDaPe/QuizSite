@@ -1,0 +1,27 @@
+.inicio {
+  height: 200px;
+  width: 400px;
+  /* background: black; */
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  gap: 1rem;
+}
+
+
+.button-adm{
+  font-size: x-large;
+  padding: 10px;
+}
+
+.button-quiz {
+  font-size: x-large;
+  padding: 10px;
+}
