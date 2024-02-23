@@ -1,4 +1,4 @@
-class Question {
+export class Question {
   body = ""
   attachment = ""
   answers = []
@@ -14,7 +14,7 @@ class Question {
 
 };
 
-class Quiz {
+export class Quiz {
   constructor(questions, currentQuestion = 0) {
     this.questions = questions
     this.currentQuestion = currentQuestion
@@ -32,79 +32,36 @@ class Quiz {
     return this.questions[this.currentQuestion]
   }
 
-};
-
-let quizResult = new Quiz([
-  new Question("Qual fruta é essa?", ["Banana", "Maça", "Kiwi"], 0, "../images/banana.webp"),
-  new Question("Qual famoso é esse?", ["Ivete Sangalo", "Luciano Hulk", "Orochimaro"], 2, "../images/skeleton-duck.png"),
-  new Question("Quem você mais ama?", ["Sua filha", "Sua irmã", "Eu"], 1, "../images/banana.webp")
-])
-
-function displayQuestion(query, question) {
-  let node = document.querySelector(query)
-  let html = document.createElement("div")
-  html.classList.add("quiz")
-  html.id = "question"
-
-  let img = document.createElement("img")
-  img.classList.add("question-img")
-  img.src = question.attachment
-  html.appendChild(img)
-
-  let questionTitle = document.createElement("span")
-  questionTitle.innerText = question.body
-  questionTitle.classList.add("question-body")
-  html.appendChild(questionTitle)
-
-  let answerGrid = document.createElement("div")
-  answerGrid.classList.add("answer-grid")
-
-  const chooseAnswer = (index) => {
-    for (let i = 0; i < answerGrid.children.length; i++) {
-      let child = answerGrid.children[i];
-      if (i === index) {
-        child.classList.add("answer-button-correct")
-      }
-      else {
-        child.classList.add("answer-button-wrong")
-      }
+  static fromJSON(str){//PRO ADM
+    let obj = JSON.parse(str)
+    let quiz = new Quiz([])
+    quiz.currentQuestion = obj.currentQuestion
+    for (let i = 0; i < obj.questions.length; i++) {
+      const e = obj.questions[i];
+      const question = new Question(e.body, e.answers, e.correctAnswer, e.attachment)
+      quiz.addQuestion(question)
     }
   }
 
-  for (let i = 0; i < question.answers.length; i++) {
-    const answer = question.answers[i];
+};
 
-    let button = document.createElement("button")
-    button.classList.add("answer-button")
-    button.innerText = answer
-    button.addEventListener("click", () => chooseAnswer(question.correctAnswer))
+export function stringToDownloadableTextFile(str) {
+  const file = new File([str], 'questions.json', {
+    type: 'text/plain',
+  })
+  const link = document.createElement('a')
+  const url = URL.createObjectURL(file)
 
-    answerGrid.appendChild(button)
-  }
+  link.href = url
+  link.download = file.name
+  document.body.appendChild(link)
+  link.click()
 
-  html.appendChild(answerGrid)
-
-  node.replaceWith(html)
+  document.body.removeChild(link)
+  window.URL.revokeObjectURL(url)
 }
 
-let nextButton = document.querySelector(".button-next")
+export function quizJson(quiz){//PRO ADM
+  return JSON.stringify(quiz)
+}
 
-nextButton.addEventListener("click", ()=>{
-  quizResult.currentQuestion = Math.min(quizResult.questions.length - 1, quizResult.currentQuestion + 1)
-  displayQuestion("#question", quizResult.getCurrent())
-})
-
-let prevButton = document.querySelector(".button-prev")
-
-prevButton.addEventListener("click", ()=>{
-  quizResult.currentQuestion = Math.max(0, quizResult.currentQuestion - 1)
-  displayQuestion("#question", quizResult.getCurrent())
-})
-
-
-const buttonBack = document.querySelector(".button-back")
-buttonBack.addEventListener("click", () => {
-  window.location = "/html/start.html"
-})
-
-displayQuestion("#question", quizResult.getCurrent())
