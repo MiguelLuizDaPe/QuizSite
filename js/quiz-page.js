@@ -1,6 +1,9 @@
 import { Quiz, Question } from "./quiz.js";
 
+let quiz = new Quiz([])//esse é pra ser o novo começo
+
 function displayQuestion(query, question) {
+  console.log("PINTOOOO")
   let node = document.querySelector(query)
   let html = document.createElement("div")
   html.classList.add("quiz")
@@ -10,6 +13,9 @@ function displayQuestion(query, question) {
   img.classList.add("question-img")
   img.src = question.attachment
   html.appendChild(img)
+
+  console.log("PINTOOOO")
+
 
   let questionTitle = document.createElement("span")
   questionTitle.innerText = question.body
@@ -47,26 +53,18 @@ function displayQuestion(query, question) {
   node.replaceWith(html)
 }
 
-let quizResult = new Quiz([
-  new Question("Qual fruta é essa?", ["Banana", "Maça", "Kiwi"], 0, "../images/banana.webp"),
-  new Question("Qual famoso é esse?", ["Ivete Sangalo", "Luciano Hulk", "Orochimaro"], 2, "../images/skeleton-duck.png"),
-  new Question("Quem você mais ama?", ["Sua filha", "Sua irmã", "Eu"], 1, "../images/banana.webp")
-])
-
-displayQuestion("#question", quizResult.getCurrent()) // o que começar o quiz
-
 let nextButton = document.querySelector(".button-next")
 
 nextButton.addEventListener("click", () => {
-  quizResult.currentQuestion = Math.min(quizResult.questions.length - 1, quizResult.currentQuestion + 1)
-  displayQuestion("#question", quizResult.getCurrent())
+  quiz.currentQuestion = Math.min(quiz.questions.length - 1, quiz.currentQuestion + 1)
+  displayQuestion("#question", quiz.getCurrent())
 })
 
 let prevButton = document.querySelector(".button-prev")
 
 prevButton.addEventListener("click", () => {
-  quizResult.currentQuestion = Math.max(0, quizResult.currentQuestion - 1)
-  displayQuestion("#question", quizResult.getCurrent())
+  quiz.currentQuestion = Math.max(0, quiz.currentQuestion - 1)
+  displayQuestion("#question", quiz.getCurrent())
 })
 
 
@@ -75,6 +73,45 @@ buttonBack.addEventListener("click", () => {
   window.location = "/html/start.html"
 })
 
-// console.log(quizJson(quizResult))
+let startButton = document.querySelector(".button-file")
 
-// stringToDownloadableTextFile(quizJson(quizResult))
+startButton.addEventListener("click", () => {
+
+  getFileContents("#input-file").then((fileJSON) => {
+    quiz = Quiz.fromJSON(fileJSON)
+    console.table(quiz)
+
+    // document.querySelector(".quiz").style.display = "flex";
+    document.querySelector(".container_button-navegation").style.display = "flex";
+    document.querySelector(".import-container").style.display = "none";
+
+    displayQuestion('.quiz', quiz.getCurrent())
+  })
+
+})
+
+async function getFileContents(selector) {
+  const fileJSON = document.querySelector(selector)
+
+  const data = await fileJSON.files[0].text()
+
+  return data
+
+  // console.log(fileJSON.files[0])
+  // console.log(data)
+
+}
+
+
+// let quiz = new Quiz([
+//   new Question("Qual fruta é essa?", ["Banana", "Maça", "Kiwi"], 0, "../images/banana.webp"),
+//   new Question("Qual famoso é esse?", ["Ivete Sangalo", "Luciano Hulk", "Orochimaro"], 2, "../images/skeleton-duck.png"),
+//   new Question("Quem você mais ama?", ["Sua filha", "Sua irmã", "Eu"], 1, "../images/banana.webp")
+// ])
+
+// displayQuestion("#question", quiz.getCurrent()) // o que começa começa aqui
+
+
+// console.log(quizJson(quiz))
+
+// stringToDownloadableTextFile(quizJson(quiz))

@@ -41,6 +41,7 @@ export class Quiz {
       const question = new Question(e.body, e.answers, e.correctAnswer, e.attachment)
       quiz.addQuestion(question)
     }
+    return quiz
   }
 
 };

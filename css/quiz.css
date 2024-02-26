@@ -1,4 +1,4 @@
-.quiz {
+.quiz{
   height: 200px;
   width: 400px;
   /* background: black; */
@@ -10,9 +10,38 @@
   margin-left: -200px;
 
   display: flex;
+  /* display: none; */
   align-items: center;
   flex-flow: column;
+  
 
+}
+
+/* .input-file{
+  padding: 2rem;
+} */
+
+.button-file{
+  margin: 2rem;
+  font-size: x-large;
+}
+
+.import-container{
+  height: 200px;
+  width: 400px;
+  /* background: black; */
+
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  /* margin-top: -100px; */
+  margin-left: -200px;
+
+  display: flex;
+  /* display: none; */
+  align-items: center;
+  flex-flow: column;
+  
 }
 
 .button-back{
@@ -21,8 +50,9 @@
   margin: 0.5rem;
 }
 
-.container_button-navegation {
-  display: flex;
+.container_button-navegation{
+  /* display: flex; */
+  display: none;
   flex-direction: row;
   justify-content: center;
   gap: 30%;
