@@ -15,6 +15,11 @@ confirmationButton.addEventListener("click", () => {
   const awnser3 = document.querySelector("#answer-3").value
   const correctAwnser = document.querySelector(".correct-answer").value
 
+  if(body === '' || awnser1 === '' || awnser2 === '' || awnser3 === '' || correctAwnser <= 0 || correctAwnser >= 4){
+    // document.createElement()
+    return null
+  }
+
   //tem que fazer correção de input aqui depois, NÃO ESQUECER QUE AWNSER É -1
 
   const question = new Question(body, [awnser1, awnser2, awnser3], correctAwnser - 1)//não vou pedir pra nego que não programa contar do zero
@@ -32,7 +37,12 @@ confirmationButton.addEventListener("click", () => {
 
 let exportButton = document.querySelector(".export-button")
 exportButton.addEventListener("click", () => {
+
   const fileName = document.querySelector(".file-name").value
+
+  if (fileName === '' || quiz.questions[0].body === '') {//é um jeito retardado,mas é oque funciona
+    return null
+  }
 
   const strQuiz = quizJson(quiz)
 

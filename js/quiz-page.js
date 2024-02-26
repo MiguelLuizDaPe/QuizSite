@@ -79,7 +79,7 @@ startButton.addEventListener("click", () => {
 
   getFileContents("#input-file").then((fileJSON) => {
     quiz = Quiz.fromJSON(fileJSON)
-    console.table(quiz)
+    // console.table(quiz)
 
     // document.querySelector(".quiz").style.display = "flex";
     document.querySelector(".container_button-navegation").style.display = "flex";
