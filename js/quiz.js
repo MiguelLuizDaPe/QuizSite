@@ -45,8 +45,8 @@ export class Quiz {
 
 };
 
-export function stringToDownloadableTextFile(str) {
-  const file = new File([str], 'questions.json', {
+export function stringToDownloadableTextFile(str, fileName) {
+  const file = new File([str], `${fileName}.json`, {
     type: 'text/plain',
   })
   const link = document.createElement('a')
@@ -64,4 +64,3 @@ export function stringToDownloadableTextFile(str) {
 export function quizJson(quiz){//PRO ADM
   return JSON.stringify(quiz)
 }
-

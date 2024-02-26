@@ -53,7 +53,7 @@ let quizResult = new Quiz([
   new Question("Quem você mais ama?", ["Sua filha", "Sua irmã", "Eu"], 1, "../images/banana.webp")
 ])
 
-displayQuestion("#question", quizResult.getCurrent())
+displayQuestion("#question", quizResult.getCurrent()) // o que começar o quiz
 
 let nextButton = document.querySelector(".button-next")
 

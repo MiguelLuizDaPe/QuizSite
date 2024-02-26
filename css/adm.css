@@ -1,3 +1,29 @@
+.container_inputs {
+  height: 200px;
+  width: 400px;
+  /* background: black; */
+
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  /* margin-top: -100px; */
+  margin-left: -200px;
+
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+
+}
+
+.export-button{
+  margin: 3rem;
+  font-size: x-large;
+}
+
+.container_inputs input{
+  margin-bottom: 1rem;
+}
+
 .button-back {
   font-size: 1.5rem;
   position: absolute;
