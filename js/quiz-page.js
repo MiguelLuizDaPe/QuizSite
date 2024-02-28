@@ -3,7 +3,7 @@ import { Quiz, Question } from "./quiz.js";
 let quiz = new Quiz([])//esse é pra ser o novo começo
 
 function displayQuestion(query, question) {
-  console.log("PINTOOOO")
+  // console.log("PINTOOOO")
   let node = document.querySelector(query)
   let html = document.createElement("div")
   html.classList.add("quiz")
@@ -14,7 +14,7 @@ function displayQuestion(query, question) {
   img.src = question.attachment
   html.appendChild(img)
 
-  console.log("PINTOOOO")
+  // console.log("PINTOOOO")
 
 
   let questionTitle = document.createElement("span")

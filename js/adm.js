@@ -5,32 +5,54 @@ buttonBack.addEventListener("click", () => {
   window.location = "/html/start.html"
 })
 
+function imgToBase64(file){
+  const reader = new FileReader()
+
+  reader.addEventListener("load", () => {
+    return ret
+  })
+
+  const ret = reader.readAsDataURL(file)
+
+}
+
 let quiz = new Quiz([])
 
 let confirmationButton = document.querySelector(".confirmation-button")
 confirmationButton.addEventListener("click", () => {
   const body = document.querySelector(".question").value
-  const awnser1 = document.querySelector("#answer-1").value
-  const awnser2 = document.querySelector("#answer-2").value
-  const awnser3 = document.querySelector("#answer-3").value
-  const correctAwnser = document.querySelector(".correct-answer").value
+  const answer1 = document.querySelector("#answer-1").value
+  const answer2 = document.querySelector("#answer-2").value
+  const answer3 = document.querySelector("#answer-3").value
+  const img = document.querySelector("#input-image").files[0]
+  const correctanswer = document.querySelector(".correct-answer").value
 
-  if(body === '' || awnser1 === '' || awnser2 === '' || awnser3 === '' || correctAwnser <= 0 || correctAwnser >= 4){
+  if (body === '' || answer1 === '' || answer2 === '' || answer3 === '' || correctanswer <= 0 || correctanswer >= 4) {
     // document.createElement()
     return null
   }
 
-  //tem que fazer correção de input aqui depois, NÃO ESQUECER QUE AWNSER É -1
+  const reader = new FileReader()
+  let imgConverted = "";
+  let question = new Question('', [], 0)
 
-  const question = new Question(body, [awnser1, awnser2, awnser3], correctAwnser - 1)//não vou pedir pra nego que não programa contar do zero
 
-  quiz.addQuestion(question)
+  reader.addEventListener("load", () =>{
+    imgConverted = reader.result;
+    question = new Question(body, [answer1, answer2, answer3], correctanswer - 1, imgConverted)
+    quiz.addQuestion(question)
+    console.log(imgConverted)
+  })
+
+  reader.readAsDataURL(img);
+
   // console.log(quiz.questions[0])
 
   document.querySelector(".question").value = '' //isso é só pra limpar os inputs no html
   document.querySelector("#answer-1").value = ''
   document.querySelector("#answer-2").value = ''
   document.querySelector("#answer-3").value = ''
+  document.querySelector("#input-image").value = ''
   document.querySelector(".correct-answer").value = ''
 
 })
