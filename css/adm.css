@@ -1,23 +1,69 @@
-.container_inputs {
-  height: 200px;
-  width: 400px;
+.container-base {
+  height: 550px;
+  width: auto;
   /* background: black; */
 
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  /* margin-top: -100px; */
-  margin-left: -200px;
-
-  display: flex;
-  align-items: center;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
   flex-flow: column;
 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container_questions-list{
+  width: 300px;
+  height: auto;
+
+  overflow: scroll;
+
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+.questions-list_delete-button{
+  margin: 5px;
+}
+
+.questions-list{
+  padding: 0;
+  margin: 0;
+
+  list-style-type: none;
+  /* list-style-position: inside; */
+
+  display: flex;
+  flex-flow: column;
+  align-items: left;
+  justify-items: left;
+}
+
+.questions-list li{
+  border-style: none none solid none;
+  border-width: 2px;
+  border-color: black;
+
+  height: 34px;
+
+  overflow: hidden;
 }
 
 .export-button{
-  margin: 3rem;
+  margin-top: 3rem;
   font-size: x-large;
+}
+
+.container_inputs{
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
+.container_inputs label{
+  padding-bottom: 0.4rem;
 }
 
 .container_inputs input{
@@ -27,4 +73,5 @@
 .button-back {
   font-size: 1.5rem;
   position: absolute;
+  margin: 0.5rem;
 }

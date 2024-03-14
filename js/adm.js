@@ -5,20 +5,22 @@ buttonBack.addEventListener("click", () => {
   window.location = "/html/start.html"
 })
 
-function imgToBase64(file){
-  const reader = new FileReader()
 
-  reader.addEventListener("load", () => {
-    return ret
-  })
+// function imgToBase64(file){
+//   const reader = new FileReader()
 
-  const ret = reader.readAsDataURL(file)
+//   reader.addEventListener("load", () => {
+//     return ret
+//   })
 
-}
+//   const ret = reader.readAsDataURL(file)
+
+// }
 
 let quiz = new Quiz([])
 
 let confirmationButton = document.querySelector(".confirmation-button")
+
 confirmationButton.addEventListener("click", () => {
   const body = document.querySelector(".question").value
   const answer1 = document.querySelector("#answer-1").value
@@ -28,7 +30,7 @@ confirmationButton.addEventListener("click", () => {
   const correctanswer = document.querySelector(".correct-answer").value
 
   if (body === '' || answer1 === '' || answer2 === '' || answer3 === '' || correctanswer <= 0 || correctanswer >= 4) {
-    // document.createElement()
+    alert("Um dos campos não foi preenchido");
     return null
   }
 
@@ -55,14 +57,19 @@ confirmationButton.addEventListener("click", () => {
   document.querySelector("#input-image").value = ''
   document.querySelector(".correct-answer").value = ''
 
+  //cria li(que é uma question) na ul
+  
+
 })
 
 let exportButton = document.querySelector(".export-button")
+
 exportButton.addEventListener("click", () => {
 
   const fileName = document.querySelector(".file-name").value
 
   if (fileName === '' || quiz.questions[0].body === '') {//é um jeito retardado,mas é oque funciona
+    alert("Não ha perguntas ou o 'Nome do arquivo' não existe");
     return null
   }
 
