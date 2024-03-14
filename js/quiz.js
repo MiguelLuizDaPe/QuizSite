@@ -9,6 +9,7 @@ export class Question {
     this.answers = answers
     this.correctAnswer = correctAnswer
     this.attachment = attachment
+    // console.log(correctAnswer)
     console.assert((answers.length > correctAnswer) && (correctAnswer >= 0), "Invalid CorrectAnswer index")
   }
 

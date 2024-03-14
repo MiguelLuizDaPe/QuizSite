@@ -36,14 +36,15 @@ confirmationButton.addEventListener("click", () => {
 
   const reader = new FileReader()
   let imgConverted = "";
-  let question = new Question('', [], 0)
+  // let question = new Question('', [], 0)
 
 
-  reader.addEventListener("load", () =>{
+  reader.addEventListener("load", () => {
     imgConverted = reader.result;
-    question = new Question(body, [answer1, answer2, answer3], correctanswer - 1, imgConverted)
+    // console.log(correctanswer)
+    let question = new Question(body, [answer1, answer2, answer3], correctanswer - 1, imgConverted)
     quiz.addQuestion(question)
-    console.log(imgConverted)
+    // console.log(imgConverted)
   })
 
   reader.readAsDataURL(img);
@@ -58,7 +59,29 @@ confirmationButton.addEventListener("click", () => {
   document.querySelector(".correct-answer").value = ''
 
   //cria li(que é uma question) na ul
-  
+  //eu to fazendo merda nessa porra e eu não sei aonde
+  //o li não ta sendo criado nessa merda
+
+  var questionLI = document.createElement("li")
+  var deleteButton = document.createElement("button")
+  var questionBody = document.createElement("span")
+  var newQuestionUL = document.createElement("ul")
+  var questionUL = document.querySelector("questions-list")
+
+  deleteButton.classList.add("questions-list_delete-button")
+  deleteButton.innerText = "X"
+
+  questionBody.innerText = body
+
+  questionLI.appendChild(deleteButton)
+  questionLI.appendChild(questionBody)
+
+  newQuestionUL.classList.add("questions-list")
+  newQuestionUL.appendChild(questionLI)
+
+  console.log(newQuestionUL)
+
+  questionUL.replaceWith(newQuestionUL)
 
 })
 
