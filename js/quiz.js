@@ -25,6 +25,18 @@ export class Quiz {
     this.questions.push(question)
   }
 
+  deleteQuestion(string){
+    for(var i = 0; i < this.questions.length; i++){
+      if(this.questions[i].body == string){
+        this.questions.splice(i, 1)
+        return true
+      }
+      else{
+        return false
+      }
+    }
+  }
+
   reset() {
     this.currentQuestion = 0
   }

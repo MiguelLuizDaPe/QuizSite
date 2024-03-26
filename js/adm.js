@@ -19,6 +19,23 @@ buttonBack.addEventListener("click", () => {
 
 let quiz = new Quiz([])
 
+
+function deletionButtonListner() {
+  var deleteButtons = document.querySelectorAll(".questions-list_delete-button")
+
+  for (var i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", function () { //isso vai alocar memória pra caralho, um dia arrumo, talvez
+      var questionLI = this.parentElement
+      console.log(questionLI)
+
+      const f = quiz.deleteQuestion(questionLI.children[1].innerText)
+      console.log(f)
+
+      questionLI.style.display = 'none';
+    });
+  }
+}
+
 let confirmationButton = document.querySelector(".confirmation-button")
 
 confirmationButton.addEventListener("click", () => {
@@ -29,7 +46,7 @@ confirmationButton.addEventListener("click", () => {
   const img = document.querySelector("#input-image").files[0]
   const correctanswer = document.querySelector(".correct-answer").value
 
-  if (body === '' || answer1 === '' || answer2 === '' || answer3 === '' || correctanswer <= 0 || correctanswer >= 4) {
+  if (body === '' || answer1 === '' || answer2 === '' || answer3 === '' || correctanswer <= 0 || correctanswer >= 4 || img == null) {
     alert("Um dos campos não foi preenchido");
     return null
   }
@@ -65,8 +82,9 @@ confirmationButton.addEventListener("click", () => {
   var questionLI = document.createElement("li")
   var deleteButton = document.createElement("button")
   var questionBody = document.createElement("span")
-  var newQuestionUL = document.createElement("ul")
-  var questionUL = document.querySelector("questions-list")
+  // var newQuestionUL = document.createElement("ul")
+  var questionUL = document.querySelector(".questions-list")
+  // var newQuestionUL = questionUL
 
   deleteButton.classList.add("questions-list_delete-button")
   deleteButton.innerText = "X"
@@ -76,14 +94,34 @@ confirmationButton.addEventListener("click", () => {
   questionLI.appendChild(deleteButton)
   questionLI.appendChild(questionBody)
 
-  newQuestionUL.classList.add("questions-list")
-  newQuestionUL.appendChild(questionLI)
+  // newQuestionUL.classList.add("questions-list")
+  // newQuestionUL.appendChild(questionLI)
+  questionUL.appendChild(questionLI)
 
-  console.log(newQuestionUL)
+  console.log(questionUL)
 
-  questionUL.replaceWith(newQuestionUL)
+  deletionButtonListner()
+
+  // questionUL.replaceWith(newQuestionUL)
 
 })
+
+
+
+// deleteButtons.forEach((button) => {
+//   // console.log("porra")
+//   button.addEventListener("click", function () {
+//     console.log("porra")
+//     var questionLI = this.parentElement
+
+//     const f = quiz.deleteQuestion(questionLI.childNodes[3])
+//     console.log(f)
+
+//     questionLI.style.display = 'none';
+//   })
+// })
+
+
 
 let exportButton = document.querySelector(".export-button")
 
@@ -91,15 +129,16 @@ exportButton.addEventListener("click", () => {
 
   const fileName = document.querySelector(".file-name").value
 
-  if (fileName === '' || quiz.questions[0].body === '') {//é um jeito retardado,mas é oque funciona
+  if (quiz.questions.length > 0) {//é um jeito retardado,mas é oque funciona
+    const strQuiz = quizJson(quiz)
+
+    stringToDownloadableTextFile(strQuiz, fileName)
+
+    document.querySelector(".file-name").value = ''
+  }
+  else {
     alert("Não ha perguntas ou o 'Nome do arquivo' não existe");
     return null
   }
-
-  const strQuiz = quizJson(quiz)
-
-  stringToDownloadableTextFile(strQuiz, fileName)
-
-  document.querySelector(".file-name").value = ''
 
 })
