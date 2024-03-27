@@ -135,6 +135,15 @@ exportButton.addEventListener("click", () => {
     stringToDownloadableTextFile(strQuiz, fileName)
 
     document.querySelector(".file-name").value = ''
+
+    quiz.questions = []
+
+    var questionLIs = document.querySelectorAll(".questions-list li") //pra limpar a listinha 
+
+    for (var i = 0; i < questionLIs.length; i++) {
+      questionLIs[i].style.display = 'none';
+    }
+
   }
   else {
     alert("Não ha perguntas ou o 'Nome do arquivo' não existe");
